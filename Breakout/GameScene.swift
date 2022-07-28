@@ -241,5 +241,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if abs(ball.physicsBody!.velocity.dx) < 100 {
+            //ball has stalled im x direction, so kick it randomly horizontally
+            ball.physicsBody?.applyImpulse(CGVector(dx: Int.random(in: -3...3), dy: 0))
+        }
+        if abs(ball.physicsBody!.velocity.dy) < 100 {
+            //ball has stalled in x directon, so kcick it randomly vertically
+            ball.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int.random(in: -3...3)))
+        }
+    }
 }
 
